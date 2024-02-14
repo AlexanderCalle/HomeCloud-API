@@ -10,7 +10,9 @@
     "start": "npx ts-node src/index.ts",
     "dev": "env-cmd nodemon",
     "serve": "ts-node src/index.ts",
-    "build": "tsc"
+    "build": "tsc",
+    "prisma:migrate": "npx prisma migrate dev --name init",
+    "prisma:generate": "npx prisma generate"
   },
   "nodemonConfig": {
     "signal": "SIGTERM",

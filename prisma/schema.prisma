@@ -3,6 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  // output   = "../src/data/client"
 }
 
 datasource db {
@@ -11,14 +12,16 @@ datasource db {
 }
 
 model User {
-  id         Int      @id
-  firstname  String
-  lastname   String
-  email      String   @unique
-  profilePic String?
-  role       Role     @default(USER)
-  File       File[]
-  Folder     Folder[]
+  id           Int      @id
+  firstname    String
+  lastname     String
+  email        String   @unique
+  profilePic   String?
+  role         Role     @default(USER)
+  home         Folder   @relation(name: "homeFolder", fields: [homeFolderId], references: [id])
+  homeFolderId Int      @unique
+  File         File[]
+  Folder       Folder[]
 }
 
 model Folder {
@@ -27,20 +30,24 @@ model Folder {
   url        String
   modifiedAt DateTime @default(now())
   size       Int?
-  user       User     @relation(fields: [userId], references: [id])
+  user       User     @relation(fields: [userId], references: [id]) // Does it need a reference to the user ?
   userId     Int
+  HomeTo     User?    @relation("homeFolder")
+  File       File[]
 }
 
 model File {
-  id        Int      @id @default(autoincrement())
-  name      String   @unique
+  id        Int       @id @default(autoincrement())
+  name      String    @unique
   url       String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
   type      String
   size      Int
-  user      User     @relation(fields: [userId], references: [id])
+  user      User      @relation(fields: [userId], references: [id])
   userId    Int
+  folder    Folder    @relation(fields: [folderId], references: [id])
+  folderId  Int
 }
 
 enum Role {

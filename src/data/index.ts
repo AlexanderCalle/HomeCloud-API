@@ -19,7 +19,6 @@ async function initializeData(): Promise<PrismaClient> {
 function getPrisma(): PrismaClient {
   if(!prismaInstance) 
     throw new Error('Please initialize the data layer before getting the Prisma instance');
-    
 
   return prismaInstance;
 }
