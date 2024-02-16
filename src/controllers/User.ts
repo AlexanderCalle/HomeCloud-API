@@ -14,7 +14,7 @@ const getAdmins = async (): Promise<User[]> => {
   });
 };
 
-const getUser = async (id: number): Promise<User> => {
+const getUserById = async (id: number): Promise<User> => {
   return await prisma.user.findFirst({
     where: { id },
   });
@@ -53,4 +53,4 @@ const deleteUser = async (id: number): Promise<boolean> => {
   return user !== null;
 };
 
-export { getUsers, getAdmins, getUser, createUser, updateUser, deleteUser };
+export { getUsers, getAdmins, getUserById, createUser, updateUser, deleteUser };

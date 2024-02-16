@@ -29,7 +29,7 @@ model Folder {
   name       String
   url        String
   modifiedAt DateTime @default(now())
-  size       Int?
+  size       Int?     @default(0)
   user       User     @relation(fields: [userId], references: [id]) // Does it need a reference to the user ?
   userId     Int
   HomeTo     User?    @relation("homeFolder")

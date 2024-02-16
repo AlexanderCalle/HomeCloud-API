@@ -8,7 +8,7 @@ const getFiles = async (): Promise<File[]> => {
   return await prisma.file.findMany();
 };
 
-const getFile = async (id: number): Promise<File> => {
+const getFileById = async (id: number): Promise<File> => {
   return await prisma.file.findUnique({
     where: {id},
   });
@@ -53,4 +53,4 @@ const deleteFile = async (id: number): Promise<boolean> => {
   return file !== null;
 };
 
-export { getFiles, getFile, createFile, updateFile, deleteFile };
+export { getFiles, getFileById, createFile, updateFile, deleteFile };
