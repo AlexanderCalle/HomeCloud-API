@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE `folder` MODIFY `size` INTEGER NULL DEFAULT 0;
